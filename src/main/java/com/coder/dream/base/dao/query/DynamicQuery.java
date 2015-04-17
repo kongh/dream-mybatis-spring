@@ -18,6 +18,11 @@ public interface DynamicQuery extends Query{
     public final static String LOGIC_OR = "or";
 
     /**
+     * 逻辑运算符（or）占位符
+     */
+    public final static String LOGIC_OR_PLACEHOLDER ="LOGIC_OR_PLACEHOLDER";
+
+    /**
      * 操作符（=）
      */
     public final static String OPERATOR_EQUAL = "=";
@@ -66,6 +71,16 @@ public interface DynamicQuery extends Query{
      * 操作符（小于等于）
      */
     public final static String OPERATOR_LESS_EQUAL = "<=";
+
+    /**
+     * 操作符（is）
+     */
+    public final static String OPERATOR_IS = "is";
+
+    /**
+     * 操作符（is not null）
+     */
+    public final static String OPERATOR_IS_NOT = "is not";
 
     /**
      * 表名

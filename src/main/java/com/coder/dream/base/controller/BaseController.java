@@ -16,7 +16,7 @@ import java.util.Map;
 public abstract class BaseController<T extends BaseEntity,M extends BaseMapper<T>,D extends BaseDao<T,M>,S extends BaseService<T,M,D>>{
 
     @Autowired
-    private S service;
+    protected S service;
 
     @RequestMapping(value = "/list")
     @ResponseBody

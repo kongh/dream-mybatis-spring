@@ -172,6 +172,17 @@ public class FilterQuery implements DynamicQuery {
     }
 
     /**
+     * in
+     *
+     * @param column
+     * @param values
+     */
+    public void in(String column,String[] values){
+        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IN);
+        filters.put(param,values);
+    }
+
+    /**
      * not in
      *
      * @param column
@@ -182,8 +193,14 @@ public class FilterQuery implements DynamicQuery {
         filters.put(param,values);
     }
 
-    public void or(FilterQuery filters){
-
+    /**
+     * or
+     *
+     * @param subFilters
+     */
+    public void or(FilterQuery subFilters){
+        DynamicParam param = new DynamicParam(LOGIC_OR,LOGIC_OR_PLACEHOLDER + filters.size(),LOGIC_OR_PLACEHOLDER + filters.size());
+        filters.put(param,subFilters.getFilters());
     }
 
     /**
@@ -192,10 +209,13 @@ public class FilterQuery implements DynamicQuery {
      * @param column
      */
     public void isNull(String column){
+        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IS);
+        filters.put(param,null);
     }
 
     public void isNotNull(String column){
-
+        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IS_NOT);
+        filters.put(param,null);
     }
 
     public Map getFilters() {
