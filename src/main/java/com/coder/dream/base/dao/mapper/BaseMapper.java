@@ -7,7 +7,7 @@ import java.util.List;
 public interface BaseMapper<T> {
 
     /**
-     * ��ѯ�б�
+     * 列表
      *
      * @param query
      * @return
@@ -15,7 +15,7 @@ public interface BaseMapper<T> {
     public List<T> list(Query query);
 
     /**
-     * ��ѯ��ҳ
+     * 分页
      *
      * @param query
      * @return
@@ -23,7 +23,7 @@ public interface BaseMapper<T> {
     public List<T> page(Query query);
 
     /**
-     * ����һ��
+     * 查找一个
      *
      * @param id
      * @return
@@ -32,28 +32,28 @@ public interface BaseMapper<T> {
 
 
     /**
-     * ����
+     * 插入
      *
      * @param t
      */
     public void insert(T t);
 
     /**
-     * ����
+     * 更新
      *
      * @param t
      */
     public void update(T t);
 
     /**
-     * ɾ��һ��
+     * 删除一个
      *
      * @param id
      */
     public void deleteOne(String id);
 
     /**
-     * ����ɾ��
+     * 批量删除
      *
      * @param ids
      */
