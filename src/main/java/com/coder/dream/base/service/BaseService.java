@@ -3,7 +3,7 @@ package com.coder.dream.base.service;
 import com.coder.dream.base.dao.BaseDao;
 import com.coder.dream.base.dao.mapper.BaseMapper;
 import com.coder.dream.base.dao.query.support.FilterQuery;
-import com.coder.dream.base.mode.BaseEntity;
+import com.coder.dream.base.model.BaseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

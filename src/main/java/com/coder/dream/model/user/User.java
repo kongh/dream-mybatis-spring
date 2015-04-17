@@ -1,6 +1,6 @@
 package com.coder.dream.model.user;
 
-import com.coder.dream.base.mode.BaseEntity;
+import com.coder.dream.base.model.BaseEntity;
 
 import java.util.Date;
 
