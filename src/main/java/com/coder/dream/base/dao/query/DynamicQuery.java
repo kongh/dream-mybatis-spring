@@ -8,6 +8,66 @@ import java.util.Map;
  */
 public interface DynamicQuery extends Query{
     /**
+     * 逻辑运算符（and）
+     */
+    public final static String LOGIC_AND = "and";
+
+    /**
+     * 逻辑运算符（or）
+     */
+    public final static String LOGIC_OR = "or";
+
+    /**
+     * 操作符（=）
+     */
+    public final static String OPERATOR_EQUAL = "=";
+
+    /**
+     * 操作符（！=）
+     */
+    public final static String OPERATOR_NOT_EQUAL = "!=";
+
+    /**
+     * 操作符（like）
+     */
+    public final static String OPERATOR_LIKE = "like";
+
+    /**
+     * 操作符（not like）
+     */
+    public final static String OPERATOR_NOT_LIKE = "not like";
+
+    /**
+     * 操作符（in）
+     */
+    public final static String OPERATOR_IN = "in";
+
+    /**
+     * 操作符（not in）
+     */
+    public final static String OPERATOR_NOT_IN = "not in";
+
+    /**
+     * 操作符（大于）
+     */
+    public final static String OPERATOR_GREATER = ">";
+
+    /**
+     * 操作符（大于等于）
+     */
+    public final static String OPERATOR_GREATER_EQUAL = ">=";
+
+    /**
+     * 操作符（小于）
+     */
+    public final static String OPERATOR_LESS = "<";
+
+    /**
+     * 操作符（小于等于）
+     */
+    public final static String OPERATOR_LESS_EQUAL = "<=";
+
+    /**
      * 表名
      *
      * @return
