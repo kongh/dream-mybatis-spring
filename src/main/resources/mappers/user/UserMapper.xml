@@ -26,6 +26,24 @@
         create_time as createTime,
         update_time as updateTime
     </sql>
+
+    <sql id="orFilter">
+        ${filter.calculation}
+        <foreach collection="value" index="subFilter" item="subValue" open="(" separator="and" close=")">
+            <choose>
+                <when test="subFilter.operator == 'in' || subFilter.operator == 'not in'">
+                    ${subFilter.column} ${subFilter.operator}
+                    <foreach collection="subValue" index="subIndex" item="subItem" open="(" separator="," close=")">
+                        #{subItem}
+                    </foreach>
+                </when>
+                <otherwise>
+                    ${subFilter.column} ${subFilter.operator} #{subValue}
+                </otherwise>
+            </choose>
+        </foreach>
+    </sql>
+
     <select id="list" parameterType="com.coder.dream.base.dao.query.Query" resultType="com.coder.dream.model.user.User">
         select <include refid="selectColumns"/> from t_user
         <where>
@@ -38,20 +56,7 @@
                         </foreach>
                     </when>
                     <when test="filter.calculation == 'or'">
-                        ${filter.calculation}
-                        <foreach collection="value" index="subFilter" item="subValue" open="(" separator="and" close=")">
-                            <choose>
-                                <when test="subFilter.operator == 'in' || subFilter.operator == 'not in'">
-                                    ${subFilter.column} ${subFilter.operator}
-                                    <foreach collection="subValue" index="subIndex" item="subItem" open="(" separator="," close=")">
-                                        #{subItem}
-                                    </foreach>
-                                </when>
-                                <otherwise>
-                                    ${subFilter.column} ${subFilter.operator} #{subValue}
-                                </otherwise>
-                            </choose>
-                        </foreach>
+                        <include refid="orFilter"/>
                     </when>
                     <otherwise>
                         ${filter.calculation} ${filter.column} ${filter.operator} #{value}
