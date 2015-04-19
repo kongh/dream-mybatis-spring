@@ -21,7 +21,7 @@ public abstract class BaseController<T extends BaseEntity,M extends BaseMapper<T
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public List<T> list(@RequestParam Map<String,String> params){
+    public List list(@RequestParam Map<String,String> params){
         FilterMap filterMap = new FilterMap();
         OrderMap orderMap = new OrderMap();
         beforeList(params,filterMap,orderMap);
