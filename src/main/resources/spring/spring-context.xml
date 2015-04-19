@@ -15,7 +15,7 @@
               <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
               <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
               <property name="username" value="root"/>
-              <property name="password" value="konghang158"/>
+              <property name="password" value="konghang"/>
        </bean>
 
        <!--mybatis session factory-->
@@ -26,7 +26,7 @@
 
        <!--configruer-->
        <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-              <property name="basePackage" value="com.coder.dream.dao.*.mapper"/>
+              <property name="basePackage" value="com.coder.dream.dao.mapper"/>
        </bean>
 
        <bean id="translationManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

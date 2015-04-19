@@ -1,6 +1,8 @@
-package com.coder.dream.base.dao.query.support;
+package com.coder.dream.base.web.vo;
 
 import com.coder.dream.base.dao.query.DynamicQuery;
+import com.coder.dream.base.dao.query.support.DefaultDynamicQuery;
+import com.coder.dream.base.dao.query.support.FilterParam;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -181,7 +183,7 @@ public class FilterMap extends LinkedHashMap<FilterParam,Object>{
      *
      * @param subFilters
      */
-    public void or(FilterQuery subFilters){
+    public void or(DefaultDynamicQuery subFilters){
         FilterParam param = new FilterParam(DynamicQuery.LOGIC_OR,
                 DynamicQuery.LOGIC_OR_PLACEHOLDER + this.size(),
                 DynamicQuery.LOGIC_OR_PLACEHOLDER + this.size());

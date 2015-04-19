@@ -1,8 +1,8 @@
 package com.coder.dream.test;
 
-import com.coder.dream.base.dao.query.support.FilterQuery;
-import com.coder.dream.dao.user.mapper.UserMapper;
-import com.coder.dream.model.user.User;
+import com.coder.dream.base.dao.query.support.DefaultDynamicQuery;
+import com.coder.dream.dao.mapper.user.UserMapper;
+import com.coder.dream.dao.model.user.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,7 +28,7 @@ public class TestClass {
     public static void main(String[] args) throws Exception{
         SqlSession sqlSession = getTestSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        FilterQuery filters = new FilterQuery("t_user");
+        DefaultDynamicQuery filters = new DefaultDynamicQuery();
 //        filters.eq("name","123");
         List<User> users = userMapper.list(filters);
         System.out.println(users.size());

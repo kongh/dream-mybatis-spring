@@ -9,7 +9,6 @@ public class Application {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-*.xml");
         System.out.println();
         UserService userService = context.getBean(UserService.class);
-        userService.list();
         System.out.println("end");
     }
 }

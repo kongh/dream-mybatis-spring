@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.coder.dream.dao.user.mapper.UserMapper">
+<mapper namespace="com.coder.dream.dao.mapper.user.UserMapper">
 
     <insert
             id="insert"
-            parameterType="com.coder.dream.model.user.User">
+            parameterType="com.coder.dream.dao.model.user.User">
             insert into t_user (
               id,
               name,
@@ -44,7 +44,7 @@
         </foreach>
     </sql>
 
-    <select id="list" parameterType="com.coder.dream.base.dao.query.Query" resultType="com.coder.dream.model.user.User">
+    <select id="list" parameterType="com.coder.dream.base.dao.query.Query" resultType="com.coder.dream.dao.model.user.User">
         select <include refid="selectColumns"/> from t_user
         <where>
             <foreach collection="filters" index="filter" item="value">

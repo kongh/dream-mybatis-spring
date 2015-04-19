@@ -1,6 +1,8 @@
 package com.coder.dream.base.dao.query;
 
-import java.util.Map;
+import com.coder.dream.base.web.vo.FilterMap;
+import com.coder.dream.base.web.vo.OrderMap;
+import com.coder.dream.base.dao.query.support.PageParam;
 
 /**
  * 动态查询接口
@@ -83,21 +85,33 @@ public interface DynamicQuery extends Query{
     public final static String OPERATOR_IS_NOT = "is not";
 
     /**
-     * 表名
+     * 排序方向（顺序）
+     */
+    public final static String ORDER_DIRECTION_ASC = "asc";
+
+    /**
+     * 排序方向（倒序）
+     */
+    public final static String ORDER_DIRECTION_DESC = "desc";
+
+    /**
+     * 过滤条件列表
      *
      * @return
      */
-    public String getTable();
+    public FilterMap getFilters();
 
     /**
-     * 过滤条件参数列表
+     * 排序条件列表
      *
      * @return
      */
-    public Map getFilters();
+    public OrderMap getOrders();
 
     /**
-     * 清空
+     * 分页参数
+     *
+     * @return
      */
-    public void clear();
+    public PageParam getPageParam();
 }

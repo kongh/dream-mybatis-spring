@@ -1,7 +1,7 @@
 package com.coder.dream.base.dao.query.support;
 
 /**
- * 动态参数
+ * 过滤参数
  *
  */
 public class FilterParam {
