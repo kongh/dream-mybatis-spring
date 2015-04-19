@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class FilterQuery implements DynamicQuery {
 
-    private Map filters = new LinkedHashMap<DynamicParam,Object>();
+    private Map filters = new LinkedHashMap<FilterParam,Object>();
 
     private String table;
 
@@ -35,7 +35,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void eq(String column,Object value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_EQUAL);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_EQUAL);
         filters.put(param,value);
     }
 
@@ -46,7 +46,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void ne(String column,Object value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_NOT_EQUAL);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_NOT_EQUAL);
         filters.put(param,value);
     }
 
@@ -57,7 +57,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void gt(String column,Integer value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_GREATER);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_GREATER);
         filters.put(param,value);
     }
 
@@ -68,7 +68,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void gt(String column,Date value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_GREATER);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_GREATER);
         filters.put(param,value);
     }
 
@@ -79,7 +79,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void ge(String column,Integer value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_GREATER_EQUAL);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_GREATER_EQUAL);
         filters.put(param,value);
     }
 
@@ -90,7 +90,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void ge(String column,Date value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_GREATER_EQUAL);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_GREATER_EQUAL);
         filters.put(param,value);
     }
 
@@ -101,7 +101,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void lt(String column,Integer value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_LESS);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_LESS);
         filters.put(param,value);
     }
 
@@ -112,7 +112,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void lt(String column,Date value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_LESS);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_LESS);
         filters.put(param,value);
     }
 
@@ -123,7 +123,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void le(String column,Integer value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_LESS_EQUAL);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_LESS_EQUAL);
         filters.put(param,value);
     }
 
@@ -134,7 +134,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void le(String column,Date value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_LESS_EQUAL);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_LESS_EQUAL);
         filters.put(param,value);
     }
 
@@ -145,7 +145,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void like(String column,String value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_LIKE);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_LIKE);
         filters.put(param,value);
     }
 
@@ -156,7 +156,7 @@ public class FilterQuery implements DynamicQuery {
      * @param value
      */
     public void notLike(String column,String value){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_NOT_LIKE);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_NOT_LIKE);
         filters.put(param,value);
     }
 
@@ -167,7 +167,7 @@ public class FilterQuery implements DynamicQuery {
      * @param values
      */
     public void in(String column,List<String> values){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IN);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_IN);
         filters.put(param,values);
     }
 
@@ -178,7 +178,7 @@ public class FilterQuery implements DynamicQuery {
      * @param values
      */
     public void in(String column,String[] values){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IN);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_IN);
         filters.put(param,values);
     }
 
@@ -189,7 +189,7 @@ public class FilterQuery implements DynamicQuery {
      * @param values
      */
     public void notIn(String column,List<String> values){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_NOT_IN);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_NOT_IN);
         filters.put(param,values);
     }
 
@@ -199,7 +199,7 @@ public class FilterQuery implements DynamicQuery {
      * @param subFilters
      */
     public void or(FilterQuery subFilters){
-        DynamicParam param = new DynamicParam(LOGIC_OR,LOGIC_OR_PLACEHOLDER + filters.size(),LOGIC_OR_PLACEHOLDER + filters.size());
+        FilterParam param = new FilterParam(LOGIC_OR,LOGIC_OR_PLACEHOLDER + filters.size(),LOGIC_OR_PLACEHOLDER + filters.size());
         filters.put(param,subFilters.getFilters());
     }
 
@@ -209,12 +209,12 @@ public class FilterQuery implements DynamicQuery {
      * @param column
      */
     public void isNull(String column){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IS);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_IS);
         filters.put(param,null);
     }
 
     public void isNotNull(String column){
-        DynamicParam param = new DynamicParam(LOGIC_AND,column,OPERATOR_IS_NOT);
+        FilterParam param = new FilterParam(LOGIC_AND,column,OPERATOR_IS_NOT);
         filters.put(param,null);
     }
 
