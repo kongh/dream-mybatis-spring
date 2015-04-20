@@ -3,6 +3,7 @@ package com.coder.dream.web.controller.user;
 import com.coder.dream.base.web.controller.BaseController;
 import com.coder.dream.base.web.vo.FilterMap;
 import com.coder.dream.base.web.vo.OrderMap;
+import com.coder.dream.base.web.vo.ResultMap;
 import com.coder.dream.dao.support.user.UserDao;
 import com.coder.dream.dao.mapper.user.UserMapper;
 import com.coder.dream.dao.model.user.User;
@@ -26,12 +27,23 @@ public class UserController extends BaseController<User,UserMapper,UserDao,UserS
         orderMap.desc("name");
         orderMap.desc("update_time");
         List<UserVo> users = service.list(filterMap,orderMap,UserVo.class);
-
-        return  service.page(filterMap,orderMap,0,2);
+        return  service.page(filterMap,orderMap,100,2);
     }
 
     @Override
     protected void beforeList(Map<String, String> params, FilterMap filterMap, OrderMap orderMap) {
         filterMap.in("name",new String[]{"123"});
+    }
+
+    @RequestMapping(value = "/page")
+    public ResultMap page(){
+        ResultMap resultMap = new ResultMap();
+        FilterMap filterMap = new FilterMap();
+        OrderMap orderMap = new OrderMap();
+        orderMap.desc("name");
+        orderMap.desc("update_time");
+        List<User> list = service.page(filterMap,orderMap,0,2);
+        resultMap.success(list,(long)list.size());
+        return  resultMap;
     }
 }
