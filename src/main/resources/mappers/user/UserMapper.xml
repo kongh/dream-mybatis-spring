@@ -19,12 +19,42 @@
               #{updateTime}
             )
     </insert>
+
     <sql id="selectColumns">
         id,
         name,
         comments,
         create_time as createTime,
         update_time as updateTime
+    </sql>
+
+    <select id="list" parameterType="com.coder.dream.base.dao.query.Query" resultType="com.coder.dream.dao.model.user.User">
+        select <include refid="selectColumns"/> from t_user
+        <include refid="whereReference"/>
+        <include refid="orderReference"/>
+        <include refid="pageReference"/>
+    </select>
+
+
+    <sql id="whereReference">
+        <where>
+            <foreach collection="filters" index="filter" item="value">
+                <choose>
+                    <when test="filter.operator == 'in' || filter.operator == 'not in'">
+                        ${filter.calculation} ${filter.column} ${filter.operator}
+                        <foreach collection="value" index="index" item="item" open="(" separator="," close=")">
+                            #{item}
+                        </foreach>
+                    </when>
+                    <when test="filter.calculation == 'or'">
+                        <include refid="orFilter"/>
+                    </when>
+                    <otherwise>
+                        ${filter.calculation} ${filter.column} ${filter.operator} #{value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </where>
     </sql>
 
     <sql id="orFilter">
@@ -44,31 +74,19 @@
         </foreach>
     </sql>
 
-    <select id="list" parameterType="com.coder.dream.base.dao.query.Query" resultType="com.coder.dream.dao.model.user.User">
-        select <include refid="selectColumns"/> from t_user
-        <where>
-            <foreach collection="filters" index="filter" item="value">
-                <choose>
-                    <when test="filter.operator == 'in' || filter.operator == 'not in'">
-                        ${filter.calculation} ${filter.column} ${filter.operator}
-                        <foreach collection="value" index="index" item="item" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </when>
-                    <when test="filter.calculation == 'or'">
-                        <include refid="orFilter"/>
-                    </when>
-                    <otherwise>
-                        ${filter.calculation} ${filter.column} ${filter.operator} #{value}
-                    </otherwise>
-                </choose>
-            </foreach>
-        </where>
+    <sql id="orderReference">
         <if test="orders != null and orders.size > 0">
-          order by
-          <foreach collection="orders" index="order" item="value" separator="," >
-              ${order.column} ${order.direction}
-          </foreach>
+            order by
+            <foreach collection="orders" index="order" item="value" separator="," >
+                ${order.column} ${order.direction}
+            </foreach>
         </if>
-    </select>
+    </sql>
+
+    <sql id="pageReference">
+        <if test="pageParam != null">
+            limit #{pageParam.start},#{pageParam.limit}
+        </if>
+    </sql>
+
 </mapper>

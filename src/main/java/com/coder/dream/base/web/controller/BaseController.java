@@ -36,4 +36,5 @@ public abstract class BaseController<T extends BaseEntity,M extends BaseMapper<T
     protected void beforeList(Map<String,String> params,FilterMap filterMap,OrderMap orderMap){
 
     }
+
 }

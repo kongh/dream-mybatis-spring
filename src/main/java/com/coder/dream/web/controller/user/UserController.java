@@ -26,7 +26,8 @@ public class UserController extends BaseController<User,UserMapper,UserDao,UserS
         orderMap.desc("name");
         orderMap.desc("update_time");
         List<UserVo> users = service.list(filterMap,orderMap,UserVo.class);
-        return users;
+
+        return  service.page(filterMap,orderMap,0,2);
     }
 
     @Override

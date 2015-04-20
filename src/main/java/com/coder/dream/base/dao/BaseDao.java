@@ -32,12 +32,12 @@ public abstract class BaseDao<T extends BaseEntity,M extends BaseMapper<T>> {
      *
      * @param filterMap
      * @param orderMap
-     * @param start
-     * @param limit
+     * @param pageIndex
+     * @param pageLimit
      * @return
      */
-    public List<T> page(FilterMap filterMap,OrderMap orderMap,int start,int limit){
-        DefaultDynamicQuery query = new DefaultDynamicQuery(filterMap,orderMap,start,limit);
-        return mapper.page(query);
+    public List<T> page(FilterMap filterMap,OrderMap orderMap,int pageIndex,int pageLimit){
+        DefaultDynamicQuery query = new DefaultDynamicQuery(filterMap,orderMap,pageIndex,pageLimit);
+        return mapper.list(query);
     }
 }

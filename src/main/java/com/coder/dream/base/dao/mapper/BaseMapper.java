@@ -15,14 +15,6 @@ public interface BaseMapper<T> {
     public List<T> list(Query query);
 
     /**
-     * 分页
-     *
-     * @param query
-     * @return
-     */
-    public List<T> page(Query query);
-
-    /**
      * 查找一个
      *
      * @param id

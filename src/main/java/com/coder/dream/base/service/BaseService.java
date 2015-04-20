@@ -2,11 +2,10 @@ package com.coder.dream.base.service;
 
 import com.coder.dream.base.dao.BaseDao;
 import com.coder.dream.base.dao.mapper.BaseMapper;
+import com.coder.dream.base.dao.model.BaseEntity;
 import com.coder.dream.base.web.vo.BaseVo;
 import com.coder.dream.base.web.vo.FilterMap;
 import com.coder.dream.base.web.vo.OrderMap;
-import com.coder.dream.base.dao.model.BaseEntity;
-import com.fasterxml.jackson.databind.deser.Deserializers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -66,11 +65,13 @@ public class BaseService<T extends BaseEntity,M extends BaseMapper<T>,D extends 
      *
      * @param filterMap
      * @param orderMap
-     * @param start
-     * @param limit
+     * @param pageIndex
+     *         第几页
+     * @param pageLimit
+     *         每页限制
      * @return
      */
-    public List<T> page(FilterMap filterMap,OrderMap orderMap,Integer start,Integer limit){
-        return dao.page(filterMap,orderMap,start,limit);
+    public List<T> page(FilterMap filterMap,OrderMap orderMap,Integer pageIndex,Integer pageLimit){
+        return dao.page(filterMap,orderMap,pageIndex,pageLimit);
     }
 }

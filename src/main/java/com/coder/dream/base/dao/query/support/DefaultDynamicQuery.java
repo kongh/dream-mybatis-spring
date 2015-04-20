@@ -31,12 +31,12 @@ public class DefaultDynamicQuery implements DynamicQuery {
         this.orders = orderMap;
     }
 
-    public DefaultDynamicQuery(FilterMap filterMap,OrderMap orderMap,Integer start,Integer limit){
+    public DefaultDynamicQuery(FilterMap filterMap,OrderMap orderMap,Integer pageIndex,Integer pageLimit){
         this.filters = filterMap;
         this.orders = orderMap;
         pageParam = new PageParam();
-        pageParam.setStart(start);
-        pageParam.setLimit(limit);
+        pageParam.setStart(pageIndex == 0 ? 0 : pageIndex * pageLimit - 1 );
+        pageParam.setLimit(pageLimit);
     }
 
     public FilterMap getFilters() {
