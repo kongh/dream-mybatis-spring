@@ -64,5 +64,11 @@
                 </choose>
             </foreach>
         </where>
+        <if test="orders != null and orders.size > 0">
+          order by
+          <foreach collection="orders" index="order" item="value" separator="," >
+              ${order.column} ${order.direction}
+          </foreach>
+        </if>
     </select>
 </mapper>

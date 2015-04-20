@@ -19,5 +19,6 @@ public class UserService extends BaseService<User,UserMapper,UserDao>{
         super.toListVo(user, vo);
         UserVo userVo = (UserVo)vo;
         userVo.setName(user.getName());
+        userVo.setUpdateTime(user.getUpdateTime());
     }
 }

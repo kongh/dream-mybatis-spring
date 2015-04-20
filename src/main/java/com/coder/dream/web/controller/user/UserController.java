@@ -23,6 +23,8 @@ public class UserController extends BaseController<User,UserMapper,UserDao,UserS
     public List list(@RequestParam Map<String, String> params) {
         FilterMap filterMap = new FilterMap();
         OrderMap orderMap = new OrderMap();
+        orderMap.desc("name");
+        orderMap.desc("update_time");
         List<UserVo> users = service.list(filterMap,orderMap,UserVo.class);
         return users;
     }
